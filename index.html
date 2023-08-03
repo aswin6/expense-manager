@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Manager</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+    </div>
+</body>
+
+<script>
+    // Configure the URL of the API
+    var apiUrl = 'https://imperial-accountabi.000webhostapp.com/server/expenseCategory.php'; // Replace with your API endpoint
+
+    // Make the fetch request
+    fetch(apiUrl)
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            // Process the response data
+            console.log(data);
+
+            $('.container').html(` ${data.map((obj, index) => `${index + 1}. ${obj.name} <br>`)}`)
+        })
+        .catch(function(error) {
+            // Handle any errors that occurred during the fetch
+            console.error('Fetch error:', error);
+        });
+    </script>
+</html>
